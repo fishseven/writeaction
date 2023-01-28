@@ -31,9 +31,6 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        persist-credentials: true
-      
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Run Java Application
@@ -48,6 +45,5 @@ jobs:
     - name: Push changes
       uses:  ad-m/github-push-action@master
       with:
-    # github_token: ${{ secrets.ACCESS_TOKEN }}
-       ssh: true
+       github_token: ${{ secrets.ACCESS_TOKEN }}
        branch: main
